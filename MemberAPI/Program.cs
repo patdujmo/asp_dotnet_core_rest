@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+var connectionString = builder.Configuration.GetConnectionString("MariaDbConnection");
+//builder.Services.AddDbContext<MemberContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddDbContext<MemberContext>(opt => opt.UseInMemoryDatabase("Member"));
 
 var app = builder.Build();
